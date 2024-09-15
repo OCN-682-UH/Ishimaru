@@ -34,7 +34,7 @@ ggplot(data= penguins_calc, #call in new df with mean and sd calculations
   geom_bar(stat= "identity", #plot the given mean body mass values
            position= position_dodge()) + #creates clustered bar plot (by sex)
   geom_errorbar(aes(ymin= body_mass-sd, #creates the floor of the error bar
-                      ymax= body_mass+sd), #creates the celing of the error bar
+                      ymax= body_mass+sd), #creates the ceiling of the error bar
                 position= position_dodge(0.9), #makes error bars in the middle of each bar
                 width= 0.4) + #changes size of error bars
   labs(x= "Species", #x-axis label
@@ -54,5 +54,5 @@ ggplot(data= penguins_calc, #call in new df with mean and sd calculations
 praise() #run to receive a well deserved compliment!
 
 # Saving the Plot --------------------------------------------------------------
-ggsave(here("Week_03", "Outputs", "Homework_penguin.png"), #saves the ggplot to our specified folder using an unbreakable file path
+ggsave(here("Week_03", "Outputs", "Homework_penguin.png"), #saves the ggplot using an unbreakable file path
        width= 7, height= 5)  #saves plot at a specific length and width
