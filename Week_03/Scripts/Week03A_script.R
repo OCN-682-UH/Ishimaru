@@ -1,6 +1,6 @@
-# MBIO 612: Week 3, Learning ggplot2
+# MBIO 612: Week 3A, Learning ggplot2
 # Created by: Shelbie Ishimaru
-# Created on: 20204-09-10
+# Created on: 2024-09-10
 ################################################################################
 # Load Libraries ---------------------------------------------------------------
 library(palmerpenguins)
