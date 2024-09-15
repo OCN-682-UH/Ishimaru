@@ -24,7 +24,8 @@ penguins_calc <- penguins %>% #create a new df to save final results and call th
   summarise(body_mass= mean(body_mass_g), #calculate the mean of body mass (g) for each species and sex
             sd= sd(body_mass_g)) #calculate the standard deviation of body mass (g) for each species and sex
 
-glimpse(penguins_calc)
+glimpse(penguins_calc) #look at our new df with calculations
+
 # Data Analysis: Plotting ------------------------------------------------------
 ggplot(data= penguins_calc, #call in new df with mean and sd calculations 
        mapping= aes(x= species, #x-axis is the different penguin species by sex
