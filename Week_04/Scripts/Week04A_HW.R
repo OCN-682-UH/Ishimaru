@@ -13,7 +13,6 @@ library(dadjoke) #for motivation/celebration!
 glimpse(penguins) #gives us a column overview, shows first 10 lines of df
 
 # Data Analysis: Question 1 ----------------------------------------------------
-#Goal: calculate the mean and variance of body mass by species, island, and sex without any NAs
 question1 <- penguins %>% #creates a new df and pulls in our penguin data set
   na.omit() %>% #removes all NAs
   group_by(species, island, sex) %>% #groups by our desired variables species, sex, and island
