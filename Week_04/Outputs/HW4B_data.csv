@@ -1,4 +1,12 @@
 Variables,Season,Tide,Time,mean_vals
+Silicate,FALL,High,Day,3.103
+Silicate,FALL,High,Night,5.401750000000001
+Silicate,FALL,Low,Day,18.845750000000002
+Silicate,FALL,Low,Night,31.09375
+Silicate,SPRING,High,Day,5.532926829268293
+Silicate,SPRING,High,Night,7.806000000000001
+Silicate,SPRING,Low,Day,38.07081081081081
+Silicate,SPRING,Low,Night,16.65125
 Temp_in,FALL,High,Day,27.61199497375
 Temp_in,FALL,High,Night,26.03778356625
 Temp_in,FALL,Low,Day,26.537438673
