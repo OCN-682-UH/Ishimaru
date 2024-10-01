@@ -6,7 +6,7 @@
 library(tidyverse) #for data manipulation
 library(here) #for unbreakable file paths
 library(lubridate) #package to deal with dates and times
-library(cowsay) #fun package of the day!
+library(cowsay) #fun package!
 
 # Read-in Data -----------------------------------------------------------------
 CondData<-read_csv(here("Week_05","data", "CondData.csv")) #Load cond data
@@ -42,4 +42,4 @@ cond_depth <- CondData %>%
 #NOTE: I get a error with ggsave() but it still saves the final plot to the correct file path
 
 # Quick Celebration :) ---------------------------------------------------------
-say("Awesome Job!", by= "whale")
+say("Awesome Job!", by= "whale") #run to receive a well deserved compliment... from a whale!
