@@ -8,7 +8,7 @@ library(here)
 library(lubridate) #package to deal with dates and times
 
 # Load Data ---------------------------------------------------------------
-#Environmental data from each site
+#Load cond data
 CondData<-read_csv(here("Week_05","data", "CondData.csv"))
 
 #look at data
