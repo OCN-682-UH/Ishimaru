@@ -1,0 +1,42 @@
+---
+title: "MBIO612 Penguin Practice"
+author: "Shelbie Ishimaru"
+date: "2024-10-01"
+output: 
+  html_document: 
+    toc: TRUE
+    toc_float: TRUE
+    theme: darkly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message= FALSE,
+                      warning= FALSE)
+```
+
+# Intro to Penguins   
+Today we are going to work with the penguin data to learn *R Markdown*  
+
+# Load Libraries  
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+library(here)
+```
+
+# Inspect the Data  
+```{r}
+glimpse(penguins)
+```
+
+# Make a Plot  
+```{r}
+penguins %>% 
+  ggplot(aes(x= year, y= body_mass_g, fill= island)) +
+  geom_bar(stat= "identity", 
+           position= position_dodge()) +
+  labs(x= "Year", y= "Body Mass (g)", fill= "Island") +
+  theme_bw()
+```
+
