@@ -2,29 +2,60 @@
 title: "R Markdown Practice"
 author: "Shelbie Ishimaru"
 date: "2024-10-03"
-output: html_document
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message= FALSE, #No messages as the default for all code chunks
+                      warning= FALSE, #No warnings as the default for all code chunks
+                      fig.path= "../Outputs/") #creates file path to save all plots 
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+# Load Libraries  
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+library(here)
+library(kableExtra)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Inspect the Data  
+```{r}
+glimpse(penguins)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Make a Plot
+```{r penguinplot, fig.asp=1.2, fig.align='center', fig.cap= "This is a scatterplot of penguins", dev='pdf'}
+#NOTE: penguinplot= unique plot name, fig.asp changes the figure aspect, fig.align changes the alignment, fig.cap= creates figure caption, and dev makes our output a PDF 
+penguins %>% 
+  ggplot(aes(x= body_mass_g, y= bill_depth_mm)) +
+  geom_point(aes(color= species)) +
+  labs(x= "Body Mass (g)", y= "Bill Depth (mm)", color= "Species") +
+  theme_bw()
+```
+
+# Create Table by Hand
+| Time  | Session | Topic    |
+|:------|:-------:|---------:|
+| _left_ | _center_| _right_ |
+| 01:00  | 1       | Anatomy |
+| 01:50  |         | *Break* |
+| 02:00  | 2       | Tables  |
+| 02:45  |         | *Break* |
+
+# Create a Table with Kable
+```{r}
+penguins %>%
+  group_by(species) %>%
+  summarise(billmean = mean(bill_length_mm, na.rm = TRUE)) %>%
+  kbl()  %>% # make it a kable table 
+  kable_classic()%>% #underscores the rows
+  row_spec(2, bold = T, color = "white", background = "red") %>% #emphasizes the second row
+  kable_styling(full_width = FALSE) #make table narrower
+```
+
+
