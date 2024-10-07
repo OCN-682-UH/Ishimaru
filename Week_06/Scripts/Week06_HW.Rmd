@@ -69,7 +69,7 @@ chem_table #call the table so it can be shown in the markdown HTML
 
 ### Make a Plot
 Finally we can make a figure ggplot. Below I will show how to create a plot that shows changes in Nitrate+Nitrite, Phosphate, and Silicate by Sampling Zone. To add excitement to my plot, I used the [Beyonce color palette](https://github.com/dill/beyonce)!
-```{r}
+```{r chem_plot}
 chem_clean %>%
   ggplot(aes(x = Mean, #x-axis is mean variable concentration
              y = Zone, fill= Zone)) + #y-axis is sampling zone
