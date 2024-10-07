@@ -1,0 +1,91 @@
+---
+title: "Week 6 Homework"
+author: "Shelbie Ishimaru"
+date: "2024-10-07"
+output: 
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message= FALSE, #No messages as the default for all code chunks
+                      warning= FALSE, #No warnings as the default for all code chunks
+                      fig.path= "../Outputs/") #creates file path to save all plots 
+```
+In this RMarkdown file, we will run through how to...
+
+1. Manipulate a data frame efficiently using the tidyverse 
+2. Create a table using the *kableExtra* package 
+3. Make a figure using ggplot  
+4. Utilize fun color palettes to make **BEAUTIFUL** figures    
+
+So let's get this party started! 
+
+
+### Load Libraries  
+The first thing we want to do is load our libraries. Below are all of the important libraries needed to accomplish our goals and a short description of what they do.
+```{r}
+library(tidyverse) #for data manipulation
+library(here) #for unbreakable file paths
+library(kableExtra) #for building tables 
+library(beyonce) #a fun color palette
+```
+
+
+### Load and Inspect the Data
+Next we want to load in our data. We are going to be using chemical data collected from *Silbiger et al. 2020*. Once we load the data we want to look at it so we can understand what information we are working with.
+```{r}
+ChemData<-read_csv(here("Week_06","Data", "chemicaldata_maunalua.csv")) #read in new data set
+glimpse(ChemData) #look at the data frame
+```
+
+
+### Data Manipulation
+Now that the data is loaded we can begin manipulating our data so that it can be used for creating tables and figures. Below I am creating a clean data frame by removing *NA* values, pivoting the data, and summarizing to obtain mean nutrient concentrations by sampling zone.
+```{r}
+chem_clean <- ChemData %>% #creates a new data frame and pulls in our data frame
+drop_na() %>% #filters out everything that is not a complete row
+  select(Zone, NN, Silicate, Phosphate) %>% #selects the cols we are interested for calculations
+  pivot_longer(cols = NN:Phosphate, #the cols you want to pivot. This says select the NN, silicate, and phosphate cols
+               names_to = "Variables", #the names of the new cols with all the column names
+               values_to = "Values") %>% #names of the new column with all the values
+  group_by(Variables, Zone) %>% #groups by our desired variables
+  summarise(Mean = mean(Values, na.rm = T)) #calculates the mean NN, silicate, and phosphate by zone
+```
+
+
+### Create a Table with Kable
+After cleaning the data, we can now create a table for publications and presentations. Below I show how the *kableExtra* package can be used to make high quality tables. 
+```{r}
+chem_table <- chem_clean %>% #creates a new data frame and pulls in our data frame
+   kbl()  %>% # make it a kable table 
+  kable_classic_2(lightable_options = "striped") %>% #makes every other row a grey background
+  kable_styling(full_width = FALSE, row_label_position = "c") #make table narrower and centers the row headers
+chem_table #call the table so it can be shown in the markdown HTML
+```
+
+
+### Make a Plot
+Finally we can make a figure ggplot. Below I will show how to create a plot that shows changes in Nitrate+Nitrite, Phosphate, and Silicate by Sampling Zone. To add excitement to my plot, I used the [Beyonce color palette](https://github.com/dill/beyonce)!
+```{r}
+chem_clean %>%
+  ggplot(aes(x = Mean, #x-axis is mean variable concentration
+             y = Zone, fill= Zone)) + #y-axis is sampling zone
+  geom_bar(stat= "identity", #plot the given means by zone
+           position= position_dodge(), #creates clustered bar plot (by zone) 
+           show.legend = F) + #removes legend
+  facet_wrap(~Variables, scales= "free_x", labeller= ) +
+  labs(x= "Mean Variable Concentration (umol/L)", #x-axis label
+       y= "Sampling Zone", #y-axis label
+       title= "Changes in Nitrate+Nitrite (NN), Phosphate, and Silicate by Sampling Zone", #plot title 
+       caption= "Source: Silbiger et al. 2020") + #adds caption of where we got the data
+  scale_fill_manual(values= beyonce_palette(11)) + #changes colors of bars to be Beyonce themed!
+  theme_bw() + #change theme so we have a white background with grey grid lines and black outline
+    theme(axis.title= element_text(size= 11), #change axes text size
+        plot.title= element_text(hjust= 0.5), #change title text size
+        plot.caption.position = "plot") #make caption on the bottom right of the page
+```
+
+Thanks for reading!! If you enjoyed this Markdown file, checkout my [MBIO 612 github repository](https://github.com/OCN-682-UH/Ishimaru) to see what I've been learning! :)
