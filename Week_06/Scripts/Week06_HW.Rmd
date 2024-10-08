@@ -76,7 +76,7 @@ chem_clean %>%
   geom_bar(stat= "identity", #plot the given means by zone
            position= position_dodge(), #creates clustered bar plot (by zone) 
            show.legend = F) + #removes legend
-  facet_wrap(~Variables, scales= "free_x", labeller= ) +
+  facet_wrap(~Variables, scales= "free_x") +
   labs(x= "Mean Variable Concentration (umol/L)", #x-axis label
        y= "Sampling Zone", #y-axis label
        title= "Changes in Nitrate+Nitrite (NN), Phosphate, and Silicate by Sampling Zone", #plot title 

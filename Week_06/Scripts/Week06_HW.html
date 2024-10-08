@@ -1943,7 +1943,7 @@ Sampling Zone. To add excitement to my plot, I used the <a href="https://github.
   geom_bar(stat= &quot;identity&quot;, #plot the given means by zone
            position= position_dodge(), #creates clustered bar plot (by zone) 
            show.legend = F) + #removes legend
-  facet_wrap(~Variables, scales= &quot;free_x&quot;, labeller= ) +
+  facet_wrap(~Variables, scales= &quot;free_x&quot;) +
   labs(x= &quot;Mean Variable Concentration (umol/L)&quot;, #x-axis label
        y= &quot;Sampling Zone&quot;, #y-axis label
        title= &quot;Changes in Nitrate+Nitrite (NN), Phosphate, and Silicate by Sampling Zone&quot;, #plot title 
