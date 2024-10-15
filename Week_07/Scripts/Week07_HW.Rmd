@@ -1,0 +1,68 @@
+---
+title: "Week 7 Homework"
+author: "Shelbie Ishimaru"
+date: "2024-10-14"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message= FALSE, #No messages as the default for all code chunks
+                      warning= FALSE, #No warnings as the default for all code chunks
+                      fig.path= "../Outputs/") #creates file path to save all plots 
+```
+Today were gonna run through how to make a basic plot using Bigfoot Field Researchers Organization's Bigfoot data from Tidy Tuesday.
+
+#### Load Libraries
+First let's load libraries that will let us accomplish our goals
+```{r}
+library(tidyverse) 
+library(maps)
+library(mapdata)
+library(mapproj)
+```
+
+#### Load and Inspect the Data
+Next lets load our data.
+```{r}
+bigfoot <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-13/bigfoot.csv') #read in bigfoot data from tidy tuesday
+glimpse(bigfoot) #look at bigfoot data
+states <- map_data("state") #get state data
+glimpse(states) #look at state data
+```
+
+#### Data Manipulation
+Now lets edit our data frame and prepare to create our map. In the first section we will find the total number of Bigfoot sightings by state and season. We also filter out Fall and Spring due to incomplete data. Then we will edit the state data so that the two data sets can be joined together.
+```{r}
+bigfoot <- bigfoot %>% #call bigfoot data
+  group_by(state, season) %>% #group by our desired variables
+  filter(season== "Summer" | season== "Winter") %>% #filter out seasons with incomplete data sets
+  summarise(sight_s= n()) #create a new column with the total sightings by state and season
+
+bigfoot_sight <- states %>% #call states data
+  mutate(region= str_to_title(region)) %>% #capitalize the state to match bigfoot data
+  rename(state= region) %>% #rename column to match the bigfoot data
+  inner_join(bigfoot) #join the two data sets together
+```
+
+#### Create Map
+Now we can finally create the map. We will map the total number of Bigfoot sightings in the US by state and season.
+```{r bigfoot_map}
+ggplot() + #start plot
+  geom_polygon(data = bigfoot_sight, #call data
+               aes(x = long, #x= longitude
+                   y = lat, #y= latitude 
+                   group = group, #make sure the map looks good!
+                   fill= sight_s), #fill each state by number of sightings per season
+               color = "black")+ #outline the states in black
+  coord_map(projection = "mercator")+ #add map projection
+  facet_wrap(~ season) + #map by season
+  theme_void() + #no background
+  labs(fill= "Bigfoot Sightings", #legend title
+       title= "Bigfoot Sightings in the US by Season", #plot title
+       caption= "Source: Bigfoot Field Researchers Organization") + #data source
+theme(plot.title= element_text(hjust= 0.5, vjust= 4), #change title text size
+      plot.caption.position = "plot",  #make caption on the bottom right of the page
+      legend.title= element_text(size= 8)) #change size of legend title
+  
+```
