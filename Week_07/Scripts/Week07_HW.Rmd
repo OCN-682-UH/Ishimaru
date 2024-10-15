@@ -9,7 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE, 
                       message= FALSE, #No messages as the default for all code chunks
                       warning= FALSE, #No warnings as the default for all code chunks
-                      fig.path= "../Outputs/") #creates file path to save all plots 
+                      fig.path= "../Output/") #creates file path to save all plots 
 ```
 Today were gonna run through how to make a basic plot using Bigfoot Field Researchers Organization's Bigfoot data from Tidy Tuesday.
 

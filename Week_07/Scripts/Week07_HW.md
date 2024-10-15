@@ -115,4 +115,4 @@ theme(plot.title= element_text(hjust= 0.5, vjust= 4), #change title text size
       legend.title= element_text(size= 8)) #change size of legend title
 ```
 
-![](../Outputs/bigfoot_map-1.png)<!-- -->
+![](../Output/bigfoot_map-1.png)<!-- -->
