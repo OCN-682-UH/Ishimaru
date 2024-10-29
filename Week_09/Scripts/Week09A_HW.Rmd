@@ -67,13 +67,13 @@ test_set2 #look at output of the test
 ```
 
 Finally, lets use our plotting function to create figures based on our two test data sets!
-```{r HW_plot1}
+```{r HW9A_plot1}
 plot1_lab <- c("Pengiun Body Mass by Species", "Mean Body Mass (g)", "Species", "Source: Palmer Station LTER / palmerpenguins package") #create a vector of plot labels
 test_plot1 <- peng_plot(data= test_set1, x= species, y= mean, sd= sd, labs= plot1_lab, col= "darkolivegreen4") #run plot function on test data set 1
 test_plot1 #look at plot!
 ```
 
-```{r HW_plot2}
+```{r HW9A_plot2}
 plot2_lab <- c("Pengiun Flipper Length by Island", "Flipper Length (mm)", "Island", "Source: Palmer Station LTER / palmerpenguins package") #create a vector of plot labels
 test_plot2 <- peng_plot(data= test_set2, x= island, y= mean, sd= sd, labs= plot2_lab, col= "pink2") #run plot function on test data set 2
 test_plot2 #look at plot!

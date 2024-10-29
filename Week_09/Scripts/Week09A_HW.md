@@ -93,7 +93,7 @@ test_plot1 <- peng_plot(data= test_set1, x= species, y= mean, sd= sd, labs= plot
 test_plot1 #look at plot!
 ```
 
-![](../Output/HW_plot1-1.png)<!-- -->
+![](../Output/HW9A_plot1-1.png)<!-- -->
 
 ``` r
 plot2_lab <- c("Pengiun Flipper Length by Island", "Flipper Length (mm)", "Island", "Source: Palmer Station LTER / palmerpenguins package") #create a vector of plot labels
@@ -101,4 +101,4 @@ test_plot2 <- peng_plot(data= test_set2, x= island, y= mean, sd= sd, labs= plot2
 test_plot2 #look at plot!
 ```
 
-![](../Output/HW_plot2-1.png)<!-- -->
+![](../Output/HW9A_plot2-1.png)<!-- -->
