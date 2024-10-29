@@ -1,0 +1,66 @@
+---
+title: "Homework 9B"
+author: "Shelbie Ishimaru"
+date: "2024-10-27"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message= FALSE, #No messages as the default for all code chunks
+                      warning= FALSE, #No warnings as the default for all code chunks
+                      fig.path= "../Output/") #creates file path to save all plots )
+```
+
+#### Load Libraries
+```{r}
+library(tidyverse) #for data manipulation
+library(here) #for unbreakable file paths
+library(maps)
+library(mapdata)
+```
+
+#### Read-in Data
+```{r}
+intertidal <- read_csv(here("Week_09","Data", "intertidaldata.csv")) #read in inter tidal data
+tidal_lat <- read_csv(here("Week_09","Data", "intertidaldata_latitude.csv")) #read in inter tidal latitude data
+
+states<-map_data("state")
+```
+
+#### Data Manipulation
+```{r}
+CA <- states %>%
+  filter(region == "california") #filter out CA data
+
+southCA_lat <- tidal_lat %>%
+  filter(Site== "Scripps")
+
+scripps_tidal <- intertidal %>%
+   filter(Site== "Scripps")
+```
+
+#### Create Plot
+```{r site_map}
+#Plot 1: Map of Site
+ggplot()+
+  geom_polygon(data = CA, 
+               aes(x = long, 
+                   y = lat),
+               color= "black",
+               fill= "darkolivegreen4") +
+  geom_point(data = southCA_lat, # add a point at all my sites for sea star obs sites
+             aes(x = -117.25,
+                 y = Latitude),
+             fill= "goldenrod",
+             color= "black",
+             size= 4,
+             shape= 21) +
+  coord_map() +
+  theme_void()
+```
+```{r scripps_intertidal}
+#Plot 2: 
+
+```
+
