@@ -47,7 +47,7 @@ CA_tidal <- intertidal %>% #pull in inter-tidal data
 ```
 
 #### Create Plot
-```{r scripps_intertidal}
+```{r CA_intertidal}
 cols <- c("dodgerblue4", "skyblue2", "lightsteelblue1") #color scheme for plot
 #Plot 2: 
 ggplot(CA_tidal, #use southern CA inter-tidal data

@@ -86,4 +86,4 @@ ggplot(CA_tidal, #use southern CA inter-tidal data
   scale_fill_manual(values = cols) #use color scheme
 ```
 
-![](../Output/scripps_intertidal-1.png)<!-- -->
+![](../Output/CA_intertidal-1.png)<!-- -->
