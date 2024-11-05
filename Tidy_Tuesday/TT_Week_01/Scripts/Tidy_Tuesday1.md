@@ -22,7 +22,6 @@ library(rnaturalearthdata) #for creating maps
 library(transformr) #for creating map with the sf package
 library(tidyverse) #for data manipulation
 library(gganimate) #for animating the map
-library(LaCroixColoR) #fun color palette
 ```
 
 #### Read-in Data
@@ -66,6 +65,7 @@ glimpse(world_monarch) #look at finalized data
 #### Create Plot
 
 ``` r
+map_cols <- c("deepskyblue2", "indianred3", "grey55")
 ggplot() + #initiate plot
   geom_sf(data= world, size = .1) + #create base map of the world
   geom_sf(aes(fill= is_monarchy), data= world_monarch) + #fill in countires by monarchy status
@@ -74,7 +74,7 @@ ggplot() + #initiate plot
        subtitle= "Year= {closest_state}", #add subtitle that informs viewers of the current year
        fill= "Monarchy Present", #add legend title
        caption= 'Source: Bjørnskov and Rode. 2020.') + #add caption to provide citation
-  scale_fill_manual(values= lacroix_palette("CranRaspberry", type = "discrete")) + #utilize color scheme
+  scale_fill_manual(values= map_cols) + #utilize color scheme
   theme_bw() + #change theme so we have a white background with grey grid lines and black outline
     theme(plot.title= element_text(hjust= 0.5, face= "bold", size= 14), #change text size, bold text, and center title
         plot.subtitle= element_text(size= 9), #change text size of subtitle
