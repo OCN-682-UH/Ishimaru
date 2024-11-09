@@ -3,11 +3,13 @@ Tidy Tuesday 2
 Shelbie Ishimaru
 2024-11-06
 
-**IMPORTNAT NOTE:** I am so sorry about my confusion and using the
-incorrect data set for my first tidy Tuesday assignment. For this
-assignment I followed Dr. Silbiger’s instruction and used the Halloween
-Movie data set. Then next week I will utilize the ISO data set to be
-back in the correct order.
+#### 🚨 IMPORTANT NOTE 🚨
+
+I am so sorry about my confusion and using the incorrect data set for my
+first tidy Tuesday assignment. For this assignment I followed
+Dr. Silbiger’s instruction and used the Halloween Movie data set. Then
+next week I will utilize the ISO data set to be back in the correct
+order.
 
 #### What I learned this week!
 

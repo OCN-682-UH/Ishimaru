@@ -11,7 +11,8 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning= FALSE, #No warnings as the default for all code chunks
                       fig.path= "../Output/") #creates file path to save all plots
 ```
-**IMPORTNAT NOTE:** I am so sorry about my confusion and using the incorrect data set for my first tidy Tuesday assignment. For this assignment I followed Dr. Silbiger's instruction and used the Halloween Movie data set. Then next week I will utilize the ISO data set to be back in the correct order.
+#### 🚨 IMPORTANT NOTE 🚨
+I am so sorry about my confusion and using the incorrect data set for my first tidy Tuesday assignment. For this assignment I followed Dr. Silbiger's instruction and used the Halloween Movie data set. Then next week I will utilize the ISO data set to be back in the correct order.
 
 #### What I learned this week!
 This week I learned how to create a bump chart to show how different genres of Monster movies ranked over the last ten years. When creating a bump chart I learned that they look better with a smaller time frame, which lead me to cut the data from 1925-2024 to 2014-2024. I also learned that these charts look better of no ranking data is missing, so I chose to remove genres that were missing annual average rankings from 2014-2024.
