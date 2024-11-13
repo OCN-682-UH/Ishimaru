@@ -1,0 +1,12 @@
+name: MBIO612_Test
+title: MBIO612_Test
+username: skishimaru
+account: skishimaru
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13319912
+bundleId: 9353876
+url: https://skishimaru.shinyapps.io/MBIO612_Test/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
