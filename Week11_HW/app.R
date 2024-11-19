@@ -23,7 +23,7 @@ ui <- fluidPage(
   
   plotOutput("bar"), #output 1 is a bar graph
   
-  mainPanel(p("Select a specific groundhog to see all of their past predictions! Does your favorite groundhog constantly see their shadow or are they're predictions variable?")), #add caption/description for the second dynamic kable table
+  mainPanel(p("Select a specific groundhog to see all of their past predictions! Does your favorite groundhog constantly see their shadow or are their predictions variable?")), #add caption/description for the second dynamic kable table
   
   selectInput(inputId= "name", #ID name for the input
               label= "Select a Groundhog", #label above the input
