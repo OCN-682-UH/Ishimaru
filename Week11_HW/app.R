@@ -11,6 +11,10 @@ choice_list <- unique(groundhogs$name) #create a list of the groundhogs so peopl
 years <- unique(predictions$year) #create a list of years so people can select a year and see a summary of all predictions for that year
 
 ui <- fluidPage(
+  titlePanel("Groundhog Day Information!"), #add title
+  
+  mainPanel(p("Select a year to see a summary of the groundhog predictions for that specific year!")), #add caption/description for the first dynamic bar graph
+  
   selectInput(inputId = "year", #ID name for the input
               label = "Choose a Year", #label above the input
               choices= years,
@@ -18,6 +22,8 @@ ui <- fluidPage(
   
   
   plotOutput("bar"), #output 1 is a bar graph
+  
+  mainPanel(p("Select a specific groundhog to see all of their past predictions! Does your favorite groundhog constantly see their shadow or are they're predictions variable?")), #add caption/description for the second dynamic kable table
   
   selectInput(inputId= "name", #ID name for the input
               label= "Select a Groundhog", #label above the input
