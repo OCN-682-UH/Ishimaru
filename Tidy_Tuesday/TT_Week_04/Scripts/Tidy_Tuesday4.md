@@ -33,8 +33,8 @@ questions <- ggplot(bb_words, aes(x= episode, y= season, fill= question_ratio)) 
   scale_x_continuous(breaks= seq(1, 23, by= 1)) + #make breaks of x-axis by 1
   scale_fill_viridis() + #fill heatmap with the viridis color palette
   labs(title= "Comparing Percent Questions and Exclamations in Bob's Burgers", #add plot title, NOTE: it's cut off right now because it is suppose to fit the joined patchwork plot
-       x= "Season", #add x-axis title
-       y= "Episode", #add y-axis title
+       x= "Episode", #add x-axis title
+       y= "Season", #add y-axis title
        fill= "Percent Questions") + #add legend title
   theme_bw() + #nice simple theme
   theme(plot.title= element_text(face= "bold", size= 19), #change text size and bold title
@@ -56,8 +56,8 @@ exclamations <- ggplot(bb_words, aes(x= episode, y= season, fill= exclamation_ra
   scale_x_continuous(breaks= seq(1, 23, by= 1)) + #make breaks of x-axis by 1
   scale_fill_viridis() + #fill heatmap with the viridis color palette
   labs(title= "", #remove plot title
-       x= "Season", #add x-axis title
-       y= "Episode", #add y-axis title
+       x= "Episode", #add x-axis title
+       y= "Season", #add y-axis title
        fill= "Percent Exclamations", #add legend title
        caption= "Source: Data Science Learning Community. 2024. Tidy Tuesday: A weekly social data project.") + #add caption that gives data credit
   theme_bw() + #nice simple theme
