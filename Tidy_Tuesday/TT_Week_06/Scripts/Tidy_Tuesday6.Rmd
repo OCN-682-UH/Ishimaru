@@ -1,0 +1,60 @@
+---
+title: "Tidy Tuesday 6"
+author: "Shelbie Ishimaru"
+date: "2024-11-27"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      message= FALSE, #No messages as the default for all code chunks
+                      warning= FALSE, #No warnings as the default for all code chunks
+                      fig.path= "../Output/") #creates file path to save all plots
+```
+
+#### What I learned this week!
+This week I learned how to create a correlation plot using corrplot function. When looking at the A64 traffic data I wanted to look at the correlation between speed and vehicle size. While building the corrplot, I challenged myself to try the different "methods" and ultimately ended up with a combination of the circle method and displaying the correlation values. 
+
+#### Load Libraries
+```{r}
+library(tidyverse) #for data manipulation
+library(corrplot) #to create correlation plot
+library(LaCroixColoR) #a fun color palette
+```
+
+#### Read-in Data
+```{r}
+A64_traffic <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-12-03/A64_traffic.csv') #read in traffic data
+```
+
+#### Data Manipulation
+```{r}
+#create a dataframe that just has the vehicle size data
+car_size <- A64_traffic %>% #pull in A64 traffic data
+  select("0 - 520 cm", "521 - 660 cm", "661 - 1160 cm", "1160+ cm") #select the columns of interest
+car_size #look at this dataframe
+```
+```{r}
+#create a dataframe that just has the vehicle speed data
+car_speed <- A64_traffic %>% #A64_traffic %>% #pull in A64 traffic data
+  select("0 - 10 mph", "11 - 15 mph", "16 - 20 mph", "21 - 25 mph", "26 - 30 mph", "31 - 35 mph", "36 - 40 mph", "41 - 45 mph", "46 - 50 mph", "51 - 55 mph", "56 - 60 mph", "61 - 70 mph", "71 - 80 mph", "80+ mph") #select the columns of interest
+car_speed #look at this dataframe
+```
+```{r}
+#run correlation
+cor_test <- cor(car_size, car_speed, use= "pairwise.complete.obs") #run correlation on the two dataframes
+cor_test #look at this correlation dataframe
+```
+
+#### Create Plot
+```{r final_plot, fig.width=15, fig.height=6}
+cor_plot <- corrplot(cor_test, #create corrplot
+                     method= "circle", #show correlation in circles
+                     col= lacroix_palette("Pamplemousse", n = 50, type = "continuous"), #use fun color palette
+                     tl.col= "black", #make "axis" labels black
+                     addCoef.col = "black", #add correlation values, in black
+                     mar= c(1, 1, 2, 1)) #format the plot (to add title and caption)
+title(main= "Correlation of Car Size and Speed on the A64 Road", cex.main= 2.5, sub= "Source: Data Science Learning Community. 2024. Tidy Tuesday: A weekly social data project.") #supply title, title size, and caption
+```
+
+
